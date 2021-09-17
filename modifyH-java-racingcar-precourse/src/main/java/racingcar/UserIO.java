@@ -23,7 +23,7 @@ public class UserIO {
     }
 
     public void splitCarNames(String carNames){
-        //차 이름 , 로 나누고 car 객체 배열 생성.
+        //차 이름 , 로 나누고 car 객체 배열 생성
         String[] splitedCarNames = carNames.split(",");
 
         for(int i = 0;i<splitedCarNames.length;i++){
