@@ -1,19 +1,25 @@
 package main.java.racingcar;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserIO {
     public int tryNum = 0;
-    public ArrayList<Car> carNameList = new ArrayList<Car>();
+    public ArrayList<Car> carNameList = new ArrayList<>();
     public void initInput(){
-        String carNames = "";
+        String carNames;
         final Scanner scanner = new Scanner(System.in);
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
         carNames=scanner.next();
-        System.out.println("시도할 회수는 몇회인가요?");
-        this.tryNum=scanner.nextInt();
-        splitCarNames(carNames);
+        try {
+            System.out.println("시도할 회수는 몇회인가요?");
+            this.tryNum = scanner.nextInt();
+            splitCarNames(carNames);
+        }catch (InputMismatchException e){
+            System.out.println("[ERROR] 시도 횟수는 숫자여야 한다.");
+            initInput();
+        }
     }
 
     public void splitCarNames(String carNames){
@@ -31,9 +37,9 @@ public class UserIO {
             System.out.print(carNameList.get(i).getName() + " : ");
             for (int j = 0; j < carNameList.get(i).getPosition(); j++)
                 System.out.print("-");
-            System.out.println("");
+            System.out.print('\n');
         }
-        System.out.println("");
+        System.out.print('\n');
     }
 
     public void showWinner(){
